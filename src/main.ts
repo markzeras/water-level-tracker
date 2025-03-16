@@ -1,17 +1,20 @@
 
 import {urls} from "./urls";
 import {scrapeWaterLevel} from "~/puppeteerScraper";
-import {copyToClipboard} from "~/clipboard";
+import {copyToClipboard, toSheetEntry} from "~/clipboard";
+import {saveWaterLevelToFile} from "~/exporter";
 
 async function run() {
+    const databaseName = 'catalunya';
     try {
-        const url = urls['catalunya'];
+        const url = urls[databaseName];
         const data = await scrapeWaterLevel(url);
-        console.log('💧 Water Level Data:', data);
+        console.log('💧 Water Level Data:', toSheetEntry(data));
 
         await copyToClipboard(data);
+        saveWaterLevelToFile(data, databaseName)
 
-        console.log('Data successfully uploaded.');
+        console.log('Data successfully saved.');
     } catch (error) {
         console.error('Error:', error);
     }

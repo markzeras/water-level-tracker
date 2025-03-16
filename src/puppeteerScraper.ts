@@ -1,9 +1,5 @@
 import puppeteer from 'puppeteer';
-
-export type WaterLevelData = {
-    date: Date;
-    percentage: number;
-};
+import {WaterLevelData} from "../types";
 
 export async function scrapeWaterLevel(url: string): Promise<WaterLevelData> {
     let waterLevelData: WaterLevelData = { date: new Date(), percentage: 0 };
@@ -24,10 +20,8 @@ export async function scrapeWaterLevel(url: string): Promise<WaterLevelData> {
         });
 
         if (data.date) {
-            console.log('📅 Date:', data.date);
             const date = parseCustomDate(data.date);
             waterLevelData.date = new Date(date);
-            console.log('Parsed Date:', waterLevelData.date);
         }
         if (data.percentage) {
             waterLevelData.percentage = parseFloat(data.percentage.toString());
@@ -44,6 +38,5 @@ export async function scrapeWaterLevel(url: string): Promise<WaterLevelData> {
 function parseCustomDate(dateStr: string): Date {
     const [day, month, year] = dateStr.split('.').map(Number);
     const fullYear = year + 2000;
-    console.log('day', day);
     return new Date(fullYear, month - 1, day);
 }
