@@ -1,4 +1,4 @@
 export type WaterLevelData = {
-    date: Date;
-    percentage: number;
+  date: Date;
+  percentage: number;
 };
