@@ -6,7 +6,7 @@ export class ConsoleFlags {
   }
 
   public get shouldCopyToClipboard(): boolean {
-    return this.args.includes('-c');
+    return this.args.includes('-cp') || this.args.includes('--copyToClipboard');
   }
 
   public get shouldCommitAndPush(): boolean {

@@ -1,6 +1,11 @@
 # water-level-tracker
 Parse html page with water level data and save it to a file.
 
+## Run
+```
+pnpm start --commitAndPush --copyToClipboard
+```
+
 ## Support
 Only catalunia, Spain is supported.
 
