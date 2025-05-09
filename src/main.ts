@@ -27,7 +27,6 @@ async function run() {
       if (consoleFlags.shouldCommitAndPush) {
         await commitAndPushChanges();
       }
-      return;
     } else {
       returnMessage = '❌ Entry already exists. Skipping save.';
     }
@@ -35,8 +34,6 @@ async function run() {
     await telegramClient.send(returnMessage, envVarsHelper.markTelegramUserId);
 
     console.log(returnMessage);
-
-    // TODO: Send telegram message
   } catch (error) {
     console.error('Error:', error);
   }
