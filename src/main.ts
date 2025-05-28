@@ -31,7 +31,10 @@ async function run() {
       returnMessage = '❌ Entry already exists. Skipping save.';
     }
 
-    await telegramClient.send(returnMessage, envVarsHelper.markTelegramUserId);
+    const isOnline = await telegramClient.isOnline();
+    if (isOnline) {
+      await telegramClient.send(returnMessage, envVarsHelper.markTelegramUserId);
+    }
 
     console.log(returnMessage);
   } catch (error) {
