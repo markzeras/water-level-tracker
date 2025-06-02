@@ -32,6 +32,10 @@ export async function scrapeWaterLevel(url: string): Promise<WaterLevelData> {
     await browser.close();
   }
 
+  if (waterLevelData.percentage === 0) {
+    throw new Error('Water level is 0, no data available');
+  }
+
   return waterLevelData;
 }
 
