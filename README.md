@@ -1,6 +1,12 @@
 # water-level-tracker
 Parse html page with water level data and save it to a file.
 
+## Setup
+First time setup: install Chrome/Chromium for puppeteer
+```bash
+npx puppeteer browsers install chrome
+```
+
 ## Run
 ```
 pnpm start --commitAndPush --copyToClipboard
