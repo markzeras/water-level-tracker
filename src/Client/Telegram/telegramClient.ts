@@ -22,7 +22,7 @@ export class TelegramClient {
     try {
       await this.ping();
       return true;
-    } catch (error) {
+    } catch {
       console.error('Telegram client is offline');
       return false;
     }
