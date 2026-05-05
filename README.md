@@ -35,3 +35,18 @@ Then add your cron job(s):
 Type `:wq` to save and exit.
 
 **Note:** The PATH line is essential because cron runs with a minimal environment. Without it, cron won't find `pnpm` or `node`.
+
+### launchd (macOS alternative — recommended)
+
+`launchd` is the native macOS scheduler. It handles sleep better than cron via `PreventSystemSleep`.
+
+Copy the template and replace `{userName}` with your username, then load it:
+```bash
+cp launchd/water-level-tracker.plist ~/Library/LaunchAgents/com.{userName}.water-level-tracker.plist
+launchctl load ~/Library/LaunchAgents/com.{userName}.water-level-tracker.plist
+```
+
+To unload:
+```bash
+launchctl unload ~/Library/LaunchAgents/com.{userName}.water-level-tracker.plist
+```
