@@ -40,13 +40,22 @@ Type `:wq` to save and exit.
 
 `launchd` is the native macOS scheduler. It handles sleep better than cron via `PreventSystemSleep`.
 
+The template includes an `EnvironmentVariables` section with the necessary PATH for Homebrew tools (pnpm and node).
+
 Copy the template and replace `{userName}` with your username, then load it:
 ```bash
 cp launchd/water-level-tracker.plist ~/Library/LaunchAgents/com.{userName}.water-level-tracker.plist
 launchctl load ~/Library/LaunchAgents/com.{userName}.water-level-tracker.plist
 ```
 
+To check the status:
+```bash
+launchctl list | grep water-level-tracker
+```
+
 To unload:
 ```bash
 launchctl unload ~/Library/LaunchAgents/com.{userName}.water-level-tracker.plist
 ```
+
+Logs are saved to `~/Library/Logs/water-level-tracker.log` and `~/Library/Logs/water-level-tracker.error.log`.
